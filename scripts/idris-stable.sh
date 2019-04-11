@@ -29,8 +29,8 @@ cabal install idris
 echo 'End Install'
 
 echo 'Augmenting PATH'
-echo '# PATH configured for Idris' >> /home/ecoop2019/.bashrc
-echo 'export PATH=$HOME/.cabal/bin/:$PATH' >> /home/ecoop2019/.bashrc
+echo '# PATH configured for Idris' >> /home/idris-playground/.bashrc
+echo 'export PATH=$HOME/.cabal/bin/:$PATH' >> /home/idris-playground/.bashrc
 
 source .bashrc
 
