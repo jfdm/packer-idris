@@ -65,8 +65,15 @@
     "provisioners": [
         {
             "type": "shell",
-            "script": "scripts/idris-stable.sh",
+            "script": "scripts/setup-as-sudo.sh",
             "execute_command": "echo 'idris-playground' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+            "expect_disconnect": true,
+            "start_retry_timeout": "30m"
+        },
+        {
+            "type": "shell",
+            "script": "scripts/idris-stable-as-user.sh",
+            "execute_command": "{{.Vars}} bash '{{.Path}}'",
             "expect_disconnect": true,
             "start_retry_timeout": "30m"
         },
@@ -78,10 +85,5 @@
             "start_retry_timeout": "30m"
         }
     ],
-    "post-processors": [{
-      "type": "vagrant",
-      "compression_level": "8",
-      "output": "output/idris-playground-stable.box",
-      "keep_input_artifact": true
-    }]
+    "post-processors": []
   }
