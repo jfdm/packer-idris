@@ -1,89 +1,89 @@
 {
-    "builders": [
-        {
-            "type": "virtualbox-iso",
-            "boot_command": [
-                "<esc><wait>",
-                "<esc><wait>",
-                "<enter><wait>",
-                "/install/vmlinuz<wait>",
-                " auto<wait>",
-                " console-setup/ask_detect=false<wait>",
-                " console-setup/layoutcode=us<wait>",
-                " console-setup/modelcode=pc105<wait>",
-                " debconf/frontend=noninteractive<wait>",
-                " debian-installer=en_US<wait>",
-                " fb=false<wait>",
-                " initrd=/install/initrd.gz<wait>",
-                " kbd-chooser/method=us<wait>",
-                " keyboard-configuration/layout=USA<wait>",
-                " keyboard-configuration/variant=USA<wait>",
-                " locale=en_US<wait>",
-                " netcfg/get_domain=vm<wait>",
-                " netcfg/get_hostname=idris-playground<wait>",
-                " grub-installer/bootdev=/dev/sda<wait>",
-                " noapic<wait>",
-                " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg<wait>",
-                " -- <wait>",
-                "<enter><wait>"
-            ],
-            "boot_wait": "10s",
-            "disk_size": 20000,
-            "guest_os_type": "Ubuntu_64",
-            "headless": true,
-            "http_directory": "http",
-            "iso_urls": [
-                "iso/ubuntu-18.04.2-server-amd64.iso",
-                "http://cdimage.ubuntu.com/releases/18.04.2/release/ubuntu-18.04.2-server-amd64.iso"
-            ],
-            "iso_checksum_type": "sha256",
-            "iso_checksum": "a2cb36dc010d98ad9253ea5ad5a07fd6b409e3412c48f1860536970b073c98f5",
-            "ssh_username": "idris-playground",
-            "ssh_password": "idris-playground",
-            "ssh_port": 22,
-            "ssh_wait_timeout": "10000s",
-            "shutdown_command": "echo 'idris-playground' | sudo -S shutdown -P now",
-            "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
-            "virtualbox_version_file": ".vbox_version",
-            "vm_name": "idris-playground-stable",
-            "vboxmanage": [
-            [
-                "modifyvm",
-                "{{.Name}}",
-                "--memory",
-                "4096"
-            ],
-            [
-                "modifyvm",
-                "{{.Name}}",
-                "--cpus",
-                "2"
-            ]
-            ]
-        }
-    ],
-    "provisioners": [
-        {
-            "type": "shell",
-            "script": "scripts/setup-as-sudo.sh",
-            "execute_command": "echo 'idris-playground' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
-            "expect_disconnect": true,
-            "start_retry_timeout": "30m"
-        },
-        {
-            "type": "shell",
-            "script": "scripts/idris-stable-as-user.sh",
-            "execute_command": "{{.Vars}} bash '{{.Path}}'",
-            "expect_disconnect": true,
-            "start_retry_timeout": "30m"
-        },
-        {
-            "type": "shell",
-            "pause_before": "35s",
-            "script": "scripts/cleanup.sh",
-            "execute_command": "echo 'idris-playground' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
-            "start_retry_timeout": "30m"
-        }
-    ],
-    "post-processors": []
-  }
+  "builders": [
+    {
+      "boot_command": [
+        "<esc><wait>",
+        "<esc><wait>",
+        "<enter><wait>",
+        "/install/vmlinuz<wait>",
+        " auto<wait>",
+        " console-setup/ask_detect=false<wait>",
+        " console-setup/layoutcode=us<wait>",
+        " console-setup/modelcode=pc105<wait>",
+        " debconf/frontend=noninteractive<wait>",
+        " debian-installer=en_US<wait>",
+        " fb=false<wait>",
+        " initrd=/install/initrd.gz<wait>",
+        " kbd-chooser/method=us<wait>",
+        " keyboard-configuration/layout=USA<wait>",
+        " keyboard-configuration/variant=USA<wait>",
+        " locale=en_US<wait>",
+        " netcfg/get_domain=vm<wait>",
+        " netcfg/get_hostname=idris-playground<wait>",
+        " grub-installer/bootdev=/dev/sda<wait>",
+        " noapic<wait>",
+        " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg<wait>",
+        " -- <wait>",
+        "<enter><wait>"
+      ],
+      "boot_wait": "10s",
+      "disk_size": 20000,
+      "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
+      "guest_os_type": "Ubuntu_64",
+      "headless": true,
+      "http_directory": "http",
+      "iso_checksum": "e2ecdace33c939527cbc9e8d23576381c493b071107207d2040af72595f8990b",
+      "iso_checksum_type": "sha256",
+      "iso_urls": [
+        "iso/ubuntu-18.04.4-server-amd64.iso",
+        "http://cdimage.ubuntu.com/releases/18.04.4/release/ubuntu-18.04.4-server-amd64.iso"
+      ],
+      "shutdown_command": "echo 'idris-playground' | sudo -S shutdown -P now",
+      "ssh_password": "idris-playground",
+      "ssh_port": 22,
+      "ssh_timeout": "10000s",
+      "ssh_username": "idris-playground",
+      "type": "virtualbox-iso",
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--memory",
+          "4096"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--cpus",
+          "2"
+        ]
+      ],
+      "virtualbox_version_file": ".vbox_version",
+      "vm_name": "idris-playground-stable"
+    }
+  ],
+  "post-processors": [],
+  "provisioners": [
+    {
+      "execute_command": "echo 'idris-playground' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+      "expect_disconnect": true,
+      "script": "scripts/setup-as-sudo.sh",
+      "start_retry_timeout": "30m",
+      "type": "shell"
+    },
+    {
+      "execute_command": "{{.Vars}} bash '{{.Path}}'",
+      "expect_disconnect": true,
+      "script": "scripts/idris-stable-as-user.sh",
+      "start_retry_timeout": "30m",
+      "type": "shell"
+    },
+    {
+      "execute_command": "echo 'idris-playground' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+      "pause_before": "35s",
+      "script": "scripts/cleanup.sh",
+      "start_retry_timeout": "30m",
+      "type": "shell"
+    }
+  ]
+}

@@ -20,14 +20,14 @@ While we could use Docker, Packer is a Swiss Army knife of tooling that supports
 
 ** Details
 
-| Base OS | Ubuntu Server 18.04.02 LTS |
+| Base OS | Ubuntu Server 18.04.04 LTS |
 | CPU     |                     64-AMD |
 | Memory  |                       4 GB |
 | Disk    |                      20 GB |
 | Cores   |                          2 |
 | GHC     |                      8.2.2 |
-| Cabal   |                        2.0 |
-| Idris   |                      1.3.1 |
+| Cabal   |                        2.4 |
+| Idris   |                      1.3.2 |
 
 + Boxname  :: =idris-playground=
 + Username :: =idris-playground=
@@ -36,7 +36,7 @@ While we could use Docker, Packer is a Swiss Army knife of tooling that supports
 
 * PreInstalled Software
 
-The box provisioned is Ubuntu 18.04.02 Server.
+The box provisioned is Ubuntu 18.04.04 Server.
 
 Extra software was installed to support Idris installation.
 

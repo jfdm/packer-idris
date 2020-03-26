@@ -8,7 +8,7 @@ export PATH=/opt/ghc/8.2.2/bin/:/opt/cabal/2.0/bin/:$PATH
 export PATH=$HOME/.cabal/bin/:$PATH
 
 cabal update
-cabal install idris
+cabal install idris 
 
 echo 'End Install'
 
