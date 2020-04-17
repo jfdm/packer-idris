@@ -9,25 +9,26 @@ While we, as Scientists, often publish papers and code online, these artifacts a
 
 The box is intended to allow evaluators access to a working Idris compiler, and evaluate artifacts using the command line.
 
-Soon, I will publish example packer scripts demonstrating how we can use this base virtual box image to create actual research artifacts.
-
 While we could use Docker, Packer is a Swiss Army knife of tooling that supports generation of many kinds of images.
+
+There are two setups provided: a hefty Ubuntu LTS Server image; and a more conservative Alpine image.
 
 ** Note
 
-+ This vagrant box has not been tested with vagrant.
-+ This box will take around *40 minutes* to build. The build of the time is spent downloading GHC and building Idris [fn:f9e343f29bb1fab].
++ This vagrant box has been tested with vagrant.
++ The Ubuntu setup will take around *40 minutes* to build. The build of the time is spent downloading GHC and building Idris [fn:f9e343f29bb1fab].
++ The Alpine setup is much quicker around 10-15 minutes.
 
 ** Details
 
-| Base OS | Ubuntu Server 18.04.04 LTS |
-| CPU     |                     64-AMD |
-| Memory  |                       4 GB |
-| Disk    |                      20 GB |
-| Cores   |                          2 |
-| GHC     |                      8.2.2 |
-| Cabal   |                        2.4 |
-| Idris   |                      1.3.2 |
+| Base OS | Ubuntu Server 18.04.04 LTS | Alpine Linux 3.11.5 |
+| CPU     |                     64-AMD | 64-AMD              |
+| Memory  |                       4 GB | 4 GB                |
+| Disk    |                      20 GB | 4 GB                |
+| Cores   |                          2 | 2                   |
+| GHC     |                      8.2.2 | n/a                 |
+| Cabal   |                        2.4 | n/a                 |
+| Idris   |                      1.3.2 | 1.3.2               |
 
 + Boxname  :: =idris-playground=
 + Username :: =idris-playground=
@@ -36,11 +37,7 @@ While we could use Docker, Packer is a Swiss Army knife of tooling that supports
 
 * PreInstalled Software
 
-The box provisioned is Ubuntu 18.04.04 Server.
-
 Extra software was installed to support Idris installation.
-
-Other notable installed software include:
 
 + mg :: A lightweight emacs clone.
 + tmux :: For advanced terminal usage.
@@ -52,6 +49,14 @@ We use this command for obtaining logs.
 #+BEGIN_SRC bash
 PACKER_LOG=1 PACKER_LOG_PATH="packer-log.txt" packer build idris-playground-stable.json
 #+END_SRC
+
+* External References
+
+The following repositories were instrumental in getting the Alpine linux box setup.
+
++ https://github.com/ketzacoatl/packer-alpine/
++ https://ketzacoatl.github.io/posts/2017-06-02-build-alpine-vagrant-box-with-packer.html
++ https://github.com/rgl/alpine-vagrant
 
 * Footnotes
 
