@@ -16,7 +16,7 @@ tar -zxvf v0.3.0.tar.gz
 cd $HOME/Idris2-0.3.0/
 
 echo 'Making Idris2'
-make bootstrap SCHEME=chez install test
+make bootstrap SCHEME=chez install #test
 
 echo 'export $PATH=$HOME/.idris2/bin:$PATH' >> $HOME/.bash_profile
 

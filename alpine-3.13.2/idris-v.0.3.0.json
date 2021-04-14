@@ -1,0 +1,30 @@
+{
+  "builders": [
+    {
+      "headless": true,
+      "shutdown_command": "echo 'idris-playground' | sudo -S poweroff",
+      "source_path": "output-virtualbox-iso/base-vm.ovf",
+      "ssh_password": "idris-playground",
+      "ssh_username": "root",
+
+      "type": "virtualbox-ovf"
+    }
+  ],
+  "post-processors": [
+    {
+      "compression_level": "8",
+      "keep_input_artifact": true,
+      "output": "output/idris-playground-v.0.3.0.box",
+      "type": "vagrant"
+    }
+  ],
+  "provisioners": [
+    {
+      "execute_command": "{{.Vars}} bash '{{.Path}}'",
+      "expect_disconnect": true,
+      "script": "scripts/02-idris.sh",
+      "start_retry_timeout": "30m",
+      "type": "shell"
+    }
+  ]
+}
