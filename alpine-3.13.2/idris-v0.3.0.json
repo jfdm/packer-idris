@@ -3,30 +3,21 @@
     {
       "headless": true,
       "shutdown_command": "echo 'idris-playground' | sudo -S poweroff",
-      "source_path": "../alpine-3.13.2/output-virtualbox-ovf/idris-v0.3.0-playground.ovf",
+      "source_path": "output-virtualbox-iso/base-vm.ovf",
       "ssh_password": "idris-playground",
       "ssh_username": "idris-playground",
+
+      "vm_name": "idris-v0.3.0-playground",
+
       "type": "virtualbox-ovf"
     }
   ],
-  "post-processors": [
-    {
-      "compression_level": "8",
-      "keep_input_artifact": true,
-      "output": "output/example.box",
-      "type": "vagrant"
-    }
-  ],
+  "post-processors": [],
   "provisioners": [
-    {
-      "destination": "/tmp/code.tar.gz",
-      "source": "code.tar.gz",
-      "type": "file"
-    },
     {
       "execute_command": "{{.Vars}} bash '{{.Path}}'",
       "expect_disconnect": true,
-      "script": "scripts/load-code.sh",
+      "script": "scripts/02-idris.sh",
       "start_retry_timeout": "30m",
       "type": "shell"
     }

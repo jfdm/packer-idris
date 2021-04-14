@@ -2,4 +2,5 @@
 **/packer_cache/*
 **/output/*
 **/output-virtualbox-iso/*
+**/output-virtualbox-ovf/*
 **/packer-log.txt

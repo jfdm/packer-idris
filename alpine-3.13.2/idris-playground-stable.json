@@ -1,0 +1,66 @@
+{
+    "builders": [
+        {
+            "vm_name": "idris-playground-stable",
+            "type": "virtualbox-iso",
+            "guest_os_type": "Linux26_64",
+            "guest_additions_mode": "attach",
+            "headless": true,
+            "http_directory": "http",
+            "vboxmanage": [
+                [ "modifyvm", "{{.Name}}", "--memory", "4096" ],
+                [ "modifyvm", "{{.Name}}", "--cpus", "2"],
+                [ "modifyvm", "{{.Name}}", "--vram", "32"],
+                [ "modifyvm", "{{.Name}}", "--nictype1", "virtio"],
+                [ "modifyvm", "{{.Name}}", "--nictype2", "virtio"],
+                [ "modifyvm", "{{.Name}}", "--nictype3", "virtio"],
+                [ "modifyvm", "{{.Name}}", "--nictype4", "virtio"]
+            ],
+            "disk_size": 2048,
+            "hard_drive_interface": "sata",
+            "hard_drive_discard": true,
+            "iso_checksum": "8e14a8f23d1d0a3772d486a94a7d707df65a942e605617ed6431fcb1ede387e4",
+            "iso_checksum_type": "sha256",
+            "iso_urls": [
+                "iso/alpine-virt-3.13.2-x86_64.iso",
+                "https://dl-cdn.alpinelinux.org/alpine/v3.13/releases/x86_64/alpine-virt-3.13.2-x86_64.iso"
+            ],
+            "ssh_password": "idris-playground",
+            "ssh_timeout": "10000s",
+            "ssh_username": "root",
+            "boot_wait": "30s",
+            "boot_command": [
+                "root<enter>",
+                "ifconfig eth0 up && udhcpc -i eth0<enter><wait5>",
+                "wget -q http://{{.HTTPIP}}:{{.HTTPPort}}/answers<enter><wait>",
+                "setup-alpine -f $PWD/answers<enter><wait5>",
+                "idris-playground<enter>",
+                "idris-playground<enter>",
+                "<wait10><wait10><wait10>",
+                "y<enter>",
+                "<wait10><wait10><wait10><wait10><wait10><wait10>",
+                "<wait10><wait10><wait10><wait10><wait10><wait10>",
+                "<wait10><wait10><wait10><wait10><wait10><wait10>",
+                "<wait10><wait10><wait10><wait10><wait10><wait10>",
+                "mount /dev/sda2 /mnt<enter>",
+                "sed -i -E 's,#?(PermitRootLogin\\s+).+,\\1yes,' /mnt/etc/ssh/sshd_config<enter>",
+                "reboot<enter>"
+            ],
+            "shutdown_command": "echo 'idris-playground' | poweroff"
+        }
+    ],
+    "post-processors": [],
+    "provisioners": [
+        {
+            "type": "shell",
+            "execute_command": "echo 'idris-playground' | sh {{.Path}}",
+            "expect_disconnect": true,
+            "scripts": [
+                "scripts/00-apk.sh",
+                "scripts/01-setup.sh",
+                "scripts/02-idris.sh",
+                "scripts/03-cleanup.sh"
+            ]
+        }
+    ]
+}
