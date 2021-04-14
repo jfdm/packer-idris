@@ -1,11 +1,5 @@
 set -eux
 
-echo 'Utilities to help interact with Idris source code.'
-apk add -U tmux mg rlwrap
-
-echo 'Installing Deps for Idris'
-apk add -U libffi libffi-dev chez-scheme
-
 echo 'Obtaining Idris2 0.3.0'
 
 cd $HOME
@@ -16,9 +10,12 @@ tar -zxvf v0.3.0.tar.gz
 cd $HOME/Idris2-0.3.0/
 
 echo 'Making Idris2'
-make bootstrap SCHEME=chez install #test
+make bootstrap-build SCHEME=chez install #test
 
-echo 'export $PATH=$HOME/.idris2/bin:$PATH' >> $HOME/.bash_profile
+# Need to change for Idris v0.3.1
+# make bootstrap SCHEME=chez install #test
+
+echo "export $PATH=$HOME/.idris2/bin:$PATH" >> $HOME/.bash_profile
 
 cd $HOME
 

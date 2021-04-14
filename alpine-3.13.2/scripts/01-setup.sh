@@ -40,3 +40,10 @@ cat >>/etc/inputrc <<'EOF'
 set show-all-if-ambiguous on
 set completion-ignore-case on
 EOF
+
+
+echo 'Utilities to help interact with Idris source code.'
+apk add -U tmux mg rlwrap
+
+echo 'Installing Deps for Idris'
+apk add -U libffi libffi-dev chez-scheme
