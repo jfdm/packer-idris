@@ -2,7 +2,9 @@
 
 [[https://www.packer.io/][Packer]] is a tool for virtual machine image and container management supporting creation and provisioning of multiple /boxes/.
 
-This repository contains a collection of scripts to build a VirtualBox  OVF image, and a Vagrant Box that contains an installation of the latest *stable* release of [[https://www.idris-lang.org][Idris]].
+This repository contains a collection of scripts to build a VirtualBox  OVF image, and a Vagrant Box that contains an installation of the latest *stable* release of [[https://www.idris-lang.org][Idris]] and Idris2.
+
+Originally we based the boxes off of LTS versions of [[https://ubuntu.com/][Ubuntu]], however we have switched to a more conservative (in size) distribution: [[https://www.alpinelinux.org/][Alpine Linux]]
 
 The idea behind this /box provisioning/ is to provide fellow researchers with an image suitable for production of Research Artifacts suitable for evaluation.
 While we, as Scientists, often publish papers and code online, these artifacts are more tuned towards reproducible results and conservancy of the research as it was done at the time.
@@ -11,7 +13,42 @@ The box is intended to allow evaluators access to a working Idris compiler, and 
 
 While we could use Docker, Packer is a Swiss Army knife of tooling that supports generation of many kinds of images.
 
-There are two setups provided: a hefty Ubuntu LTS Server image; and a more conservative Alpine image.
+This project was initially designed for Idris1 reproducible builds, but I have extended it to support Idris2.
+
+Support for Idris1 is not continuing.
+
+* Idris 2
+
+Only one style of box is provided for Idris2 a conservative Alpine image.
+
+It is provided in this project's root directory.
+
+** Note
+
++ This vagrant box has been tested with vagrant.
++ The Alpine setup is much quicker around 10-15 minutes.
+
+** Details
+
+ | Base OS | Alpine Linux 3.13.3 |
+ | CPU     | 64-AMD              |
+ | Memory  | 4 GB                |
+ | Disk    | 4 GB                |
+ | Cores   | 2                   |
+ | GHC     | n/a                 |
+ | Cabal   | n/a                 |
+ | Idris2  | 0.3.0             |
+
+ + Boxname  :: =idris-playground=
+ + Username :: =idris-playground=
+ + Password :: =idris-playground=
+
+
+* Idris 1
+
+There are two setups provided for Idris1: a hefty Ubuntu LTS Server image; and a more conservative Alpine image.
+
+They are provided in the =idris1= directory.
 
 ** Note
 
@@ -21,19 +58,18 @@ There are two setups provided: a hefty Ubuntu LTS Server image; and a more conse
 
 ** Details
 
-| Base OS | Ubuntu Server 18.04.04 LTS | Alpine Linux 3.11.5 |
-| CPU     |                     64-AMD | 64-AMD              |
-| Memory  |                       4 GB | 4 GB                |
-| Disk    |                      20 GB | 4 GB                |
-| Cores   |                          2 | 2                   |
-| GHC     |                      8.2.2 | n/a                 |
-| Cabal   |                        2.4 | n/a                 |
-| Idris   |                      1.3.2 | 1.3.2               |
+ | Base OS | Ubuntu Server 18.04.04 LTS | Alpine Linux 3.11.5 |
+ | CPU     |                     64-AMD | 64-AMD              |
+ | Memory  |                       4 GB | 4 GB                |
+ | Disk    |                      20 GB | 4 GB                |
+ | Cores   |                          2 | 2                   |
+ | GHC     |                      8.2.2 | n/a                 |
+ | Cabal   |                        2.4 | n/a                 |
+ | Idris   |                      1.3.2 | 1.3.2               |
 
-+ Boxname  :: =idris-playground=
-+ Username :: =idris-playground=
-+ Password :: =idris-playground=
-
+ + Boxname  :: =idris-playground=
+ + Username :: =idris-playground=
+ + Password :: =idris-playground=
 
 * PreInstalled Software
 
