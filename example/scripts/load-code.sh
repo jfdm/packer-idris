@@ -1,6 +1,8 @@
 #!/bin/bash -eux
 # A basic install script to install stable Idris from cabal
 
+source $HOME/.bashrc
+
 cd /tmp/
 tar -zxvf /tmp/code.tar.gz
 

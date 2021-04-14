@@ -15,11 +15,13 @@ make bootstrap-build SCHEME=chez install #test
 # Need to change for Idris v0.3.1
 # make bootstrap SCHEME=chez install #test
 
-echo "export $PATH=$HOME/.idris2/bin:$PATH" >> $HOME/.bash_profile
+cat >>$HOME/.bashrc <<'EOF'
+export PATH=$HOME/.idris2/bin:$PATH
+EOF
 
 cd $HOME
 
-source $HOME/.bash_profile
+source $HOME/.bashrc
 
 echo 'Checking installation'
 
