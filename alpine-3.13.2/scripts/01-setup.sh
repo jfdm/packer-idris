@@ -18,10 +18,9 @@ wget -qO /home/idris-playground/.ssh/authorized_keys https://raw.githubuserconte
 chmod 600 /home/idris-playground/.ssh/authorized_keys
 chown -R idris-playground:idris-playground /home/idris-playground/.ssh
 
-
 # install the VirtualBox Guest Additions.
-echo http://mirrors.dotsrc.org/alpine/edge/community >>/etc/apk/repositories
-apk add -U virtualbox-guest-additions virtualbox-guest-modules-virt
+
+apk add -U virtualbox-guest-additions #virtualbox-guest-modules-virt
 
 rc-update add virtualbox-guest-additions default
 echo vboxpci    >> /etc/modules

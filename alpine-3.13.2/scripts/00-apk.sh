@@ -9,6 +9,10 @@ cat /etc/alpine-release
 
 # Move to Edge for Idris and ffi
 sed -i -e 's/v[[:digit:]]\..*\//edge\//g' /etc/apk/repositories
+
+echo http://mirrors.dotsrc.org/alpine/edge/testing >>/etc/apk/repositories
+echo http://mirrors.dotsrc.org/alpine/edge/community >>/etc/apk/repositories
+
 apk upgrade --update-cache --available
 
 sync
@@ -23,7 +27,7 @@ apk add attr dialog dialog-doc bash-doc bash-completion grep grep-doc
 
 apk add nfs-utils
 
-apk add util-linux util-linux-doc pciutils usbutils binutils findutils readline
+apk add util-linux util-linux-doc pciutils usbutils build-base findutils readline
 
 apk add less less-doc curl curl-doc make
 
