@@ -30,7 +30,7 @@ It is provided in this project's root directory.
 
 ** Details
 
- | Base OS | Alpine Linux 3.13.3 |
+ | Base OS | Alpine Linux 3.13.5 |
  | CPU     | 64-AMD              |
  | Memory  | 4 GB                |
  | Disk    | 4 GB                |
