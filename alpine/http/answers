@@ -1,0 +1,28 @@
+KEYMAPOPTS="us us"
+
+HOSTNAMEOPTS=localhost
+
+INTERFACESOPTS="auto lo
+iface lo inet loopback
+
+auto eth0
+iface eth0 inet dhcp
+"
+
+#DNSOPTS=""
+
+TIMEZONEOPTS="UTC"
+
+PROXYOPTS="none"
+
+APKREPOSOPTS="-1"
+
+# OpenSSH
+
+SSHDOPTS=openssh
+
+# NTPopts
+
+NTPOPTS=chrony
+
+DISKOPTS="-m sys /dev/sda"

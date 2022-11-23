@@ -45,5 +45,7 @@ EOF
 echo 'Utilities to help interact with Idris source code.'
 apk add -U tmux mg rlwrap
 
+apk add -U hyperfine
+
 echo 'Installing Deps for Idris'
-apk add -U libffi libffi-dev chez-scheme
+apk add -U libffi libffi-dev chez-scheme gmp-dev

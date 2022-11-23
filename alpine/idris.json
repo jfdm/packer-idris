@@ -5,9 +5,9 @@
       "shutdown_command": "echo 'idris-playground' | sudo -S poweroff",
       "source_path": "output-virtualbox-iso/base-vm.ovf",
       "ssh_password": "idris-playground",
-      "ssh_username": "idris-playground",
+      "ssh_username": "root",
 
-      "vm_name": "idris-v0.3.0-playground",
+      "vm_name": "idris-playground",
 
       "type": "virtualbox-ovf"
     }
@@ -15,7 +15,7 @@
   "post-processors": [],
   "provisioners": [
     {
-      "execute_command": "{{.Vars}} bash '{{.Path}}'",
+      "execute_command": "{{.Vars}} sh '{{.Path}}'",
       "expect_disconnect": true,
       "script": "scripts/02-idris.sh",
       "start_retry_timeout": "30m",
