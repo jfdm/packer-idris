@@ -5,7 +5,7 @@
       "shutdown_command": "echo 'idris-playground' | sudo -S poweroff",
       "source_path": "../alpine/output-virtualbox-iso/alpine.ovf",
       "ssh_password": "idris-playground",
-      "ssh_username": "root",
+      "ssh_username": "idris-playground",
 
       "vm_name": "idris-playground",
 

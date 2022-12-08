@@ -1,6 +1,6 @@
 .PHONY: idris
 
 idris:
-	packer build idris.json
+	packer build -force idris.json
 
 # -- [ EOF ]

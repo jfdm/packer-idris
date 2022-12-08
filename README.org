@@ -24,38 +24,40 @@ To build the boxes call the Makefile in the following order:
 #+begin_src bash
   make alpine    # the base VM
   make idris     # the base vm with idris2
-  make verilator # optional for idris2 and verilator
 #+end_src
 
 * Box Information
+
 ** Idris 2
 
-Only one style of box is provided for Idris2 a conservative Alpine image.
-
-It is provided in this project's root directory.
+Only one style of box is provided for Idris2, a conservative Alpine image.
+The box can be found in the =idris= directory.
 
 *** Note
 
-+ This vagrant box has been tested with vagrant.
-+ The Alpine setup is much quicker around 10-15 minutes.
++ The set up is around 10 minutes including building the base image.
++ We have installed idris2 using =nix pkgs=. Although idris2 is available from Alpine's own repository, we include nix to allow installation of other packages not in Alpine's own repositories.
 
+  Thus when provision this box further you need to add the following to your provision script:
+
+  #+begin_src bash
+echo ". $HOME/.nix-profile/etc/profile.d/nix.sh" >> ~/.profile
+
+. .profile
+
+  #+end_src
 *** Details
 
  | Base OS | Alpine Linux 3.16.3 |
  | CPU     | 64-AMD              |
  | Memory  | 4 GB                |
- | Disk    | 4 GB                |
+ | Disk    | 8 GB                |
  | Cores   | 2                   |
  | Idris2  | 0.6.0               |
 
  + Boxname  :: =idris-playground=
  + Username :: =idris-playground=
  + Password :: =idris-playground=
-
-** Verilator
-
-We provide a box that contains Idris2 & Verilator.
-It is the same box for Idris2 but with Verilator.
 
 ** DEPRECATED/NO LONGER SUPPORTED Idris 1
 
@@ -91,7 +93,7 @@ Extra software was installed to support Idris installation.
 + mg :: A lightweight emacs clone.
 + tmux :: For advanced terminal usage.
 + hyperfine :: For running benchmarks.
-
++ nix :: to get packages not available in alpine's repositories.
 * Logging output
 
 Use this command for obtaining logs.
