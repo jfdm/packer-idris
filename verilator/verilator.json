@@ -3,11 +3,11 @@
     {
       "headless": true,
       "shutdown_command": "echo 'idris-playground' | sudo -S poweroff",
-      "source_path": "output-virtualbox-iso/base-vm.ovf",
+      "source_path": "../idris/output-virtualbox-ovf/idris-playground.ovf",
       "ssh_password": "idris-playground",
-      "ssh_username": "idris-playground",
+      "ssh_username": "root",
 
-      "vm_name": "idris-play",
+      "vm_name": "idris-playground-verilator",
 
       "type": "virtualbox-ovf"
     }
@@ -17,7 +17,7 @@
     {
       "execute_command": "{{.Vars}} sh '{{.Path}}'",
       "expect_disconnect": true,
-      "script": "scripts/02-idris.sh",
+      "script": "scripts/verilator.sh",
       "start_retry_timeout": "30m",
       "type": "shell"
     }

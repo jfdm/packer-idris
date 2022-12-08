@@ -1,0 +1,5 @@
+*~
+packer_cache/*
+output/*
+output-virtualbox-iso/*
+packer-log.txt

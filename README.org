@@ -4,7 +4,7 @@
 
 This repository contains a collection of scripts to build a VirtualBox  OVF image, and a Vagrant Box that contains an installation of the latest *stable* release of [[https://www.idris-lang.org][Idris]] and Idris2.
 
-Originally we based the boxes off of LTS versions of [[https://ubuntu.com/][Ubuntu]], however we have switched to a more conservative (in size) distribution: [[https://www.alpinelinux.org/][Alpine Linux]]
+Originally we based the boxes off of LTS versions of [[https://ubuntu.com/][Ubuntu]], however we have switched to a more conservative (in size) distribution: [[https://www.alpinelinux.org/][Alpine Linux]].
 
 The idea behind this /box provisioning/ is to provide fellow researchers with an image suitable for production of Research Artifacts suitable for evaluation.
 While we, as Scientists, often publish papers and code online, these artifacts are more tuned towards reproducible results and conservancy of the research as it was done at the time.
@@ -15,20 +15,31 @@ While we could use Docker, Packer is a Swiss Army knife of tooling that supports
 
 This project was initially designed for Idris1 reproducible builds, but I have extended it to support Idris2.
 
-Support for Idris1 is not continuing.
+*Support for Idris1 is not continuing.*
 
-* Idris 2
+* Building Boxes
+
+To build the boxes call the Makefile in the following order:
+
+#+begin_src bash
+  make alpine    # the base VM
+  make idris     # the base vm with idris2
+  make verilator # optional for idris2 and verilator
+#+end_src
+
+* Box Information
+** Idris 2
 
 Only one style of box is provided for Idris2 a conservative Alpine image.
 
 It is provided in this project's root directory.
 
-** Note
+*** Note
 
 + This vagrant box has been tested with vagrant.
 + The Alpine setup is much quicker around 10-15 minutes.
 
-** Details
+*** Details
 
  | Base OS | Alpine Linux 3.16.3 |
  | CPU     | 64-AMD              |
@@ -41,20 +52,24 @@ It is provided in this project's root directory.
  + Username :: =idris-playground=
  + Password :: =idris-playground=
 
+** Verilator
 
-* Idris 1
+We provide a box that contains Idris2 & Verilator.
+It is the same box for Idris2 but with Verilator.
+
+** DEPRECATED/NO LONGER SUPPORTED Idris 1
 
 There are two setups provided for Idris1: a hefty Ubuntu LTS Server image; and a more conservative Alpine image.
 
 They are provided in the =idris1= directory.
 
-** Note
+*** Note
 
 + This vagrant box has been tested with vagrant.
 + The Ubuntu setup will take around *40 minutes* to build. The build of the time is spent downloading GHC and building Idris [fn:f9e343f29bb1fab].
 + The Alpine setup is much quicker around 10-15 minutes.
 
-** Details
+*** Details
 
  | Base OS | Ubuntu Server 18.04.04 LTS | Alpine Linux 3.11.5 |
  | CPU     |                     64-AMD | 64-AMD              |
@@ -79,10 +94,10 @@ Extra software was installed to support Idris installation.
 
 * Logging output
 
-We use this command for obtaining logs.
+Use this command for obtaining logs.
 
 #+BEGIN_SRC bash
-PACKER_LOG=1 PACKER_LOG_PATH="packer-log.txt" packer build idris-playground-stable.json
+PACKER_LOG=1 PACKER_LOG_PATH="packer-log.txt" packer build <image name>.json
 #+END_SRC
 
 * External References

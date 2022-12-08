@@ -1,12 +1,6 @@
-.PHONY: base idris playground
+.PHONY: alpine
 
-base:
+alpine:
 	packer build -force alpine.json
 
-idris:
-	packer build -force idris.json
-
-playground: base idris
-
-
-# [ EOF ]
+# -- [ EOF ]

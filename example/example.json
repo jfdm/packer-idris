@@ -3,7 +3,7 @@
     {
       "headless": true,
       "shutdown_command": "echo 'idris-playground' | sudo -S poweroff",
-      "source_path": "../alpine-3.13.5/output-virtualbox-ovf/idris.ovf",
+      "source_path": "../idris/output-virtualbox-ovf/idris-playground.ovf",
       "ssh_password": "idris-playground",
       "ssh_username": "idris-playground",
       "type": "virtualbox-ovf"
