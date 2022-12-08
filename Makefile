@@ -1,13 +1,10 @@
-.PHONY: alpine idris verilator
+.PHONY: alpine idris
 
 alpine:
 	make -C alpine alpine
 
 idris:
 	make -C idris idris
-
-verilator:
-	make -C verilator verilator
 
 example:
 	make -C example example
