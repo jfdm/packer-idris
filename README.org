@@ -30,14 +30,12 @@ It is provided in this project's root directory.
 
 ** Details
 
- | Base OS | Alpine Linux 3.13.5 |
+ | Base OS | Alpine Linux 3.16.3 |
  | CPU     | 64-AMD              |
  | Memory  | 4 GB                |
  | Disk    | 4 GB                |
  | Cores   | 2                   |
- | GHC     | n/a                 |
- | Cabal   | n/a                 |
- | Idris2  | 0.3.0             |
+ | Idris2  | 0.6.0               |
 
  + Boxname  :: =idris-playground=
  + Username :: =idris-playground=
@@ -77,6 +75,7 @@ Extra software was installed to support Idris installation.
 
 + mg :: A lightweight emacs clone.
 + tmux :: For advanced terminal usage.
++ hyperfine :: For running benchmarks.
 
 * Logging output
 
