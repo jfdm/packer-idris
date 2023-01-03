@@ -1,4 +1,8 @@
 {
+    "variables": {
+        "headless_status": "{{env `HEADLESS`}}"
+    },
+
     "builders": [
         {
 
@@ -6,7 +10,7 @@
             "type": "virtualbox-iso",
             "guest_os_type": "Linux26_64",
             "guest_additions_mode": "disable",
-            "headless": false,
+            "headless": "{{user `headless_status`}}",
             "http_directory": "http",
             "vboxmanage": [
                 [ "modifyvm", "{{.Name}}", "--memory", "4096" ],

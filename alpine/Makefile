@@ -1,3 +1,4 @@
+HEADLESS?=false
 .PHONY: alpine
 
 alpine:
