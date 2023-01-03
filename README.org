@@ -23,6 +23,7 @@ To build the boxes install the dependencies:
 
 - packer
 - virtualbox
+- virtualbox-guest-additions-iso
 
 and then call the Makefile in the following order:
 
