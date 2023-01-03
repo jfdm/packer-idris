@@ -1,4 +1,4 @@
 .PHONY: example
 
 example:
-	packer build -f example.json
+	packer build -force example.json
