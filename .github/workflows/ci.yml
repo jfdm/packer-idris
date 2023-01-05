@@ -1,0 +1,26 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - '*'
+
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+
+  build:
+    # We use macOS because linux workers do not support VT-x
+    # We use macos-12 because packer & virtualbox come pre-installed
+    runs-on: macos-12
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Build alpine VM
+        run: HEADLESS=true make alpine
+      - name: Build idris VM
+        run: make idris
+      - name: Test example
+        run: cd example && make

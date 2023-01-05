@@ -19,7 +19,13 @@ This project was initially designed for Idris1 reproducible builds, but I have e
 
 * Building Boxes
 
-To build the boxes call the Makefile in the following order:
+To build the boxes install the dependencies:
+
+- packer
+- virtualbox
+- virtualbox-guest-additions-iso
+
+and then call the Makefile in the following order:
 
 #+begin_src bash
   make alpine    # the base VM

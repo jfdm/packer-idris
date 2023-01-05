@@ -1,4 +1,8 @@
 {
+    "variables": {
+        "headless_status": "{{env `HEADLESS`}}"
+    },
+
     "builders": [
         {
 
@@ -6,7 +10,7 @@
             "type": "virtualbox-iso",
             "guest_os_type": "Linux26_64",
             "guest_additions_mode": "disable",
-            "headless": false,
+            "headless": "{{user `headless_status`}}",
             "http_directory": "http",
             "vboxmanage": [
                 [ "modifyvm", "{{.Name}}", "--memory", "4096" ],
@@ -20,7 +24,7 @@
             "disk_size": "8048",
             "hard_drive_interface": "sata",
             "hard_drive_discard": true,
-            "iso_checksum": "e6bbcab275b704bc6521781f2342fff084700b458711fdf315a5816d9885943c",
+            "iso_checksum": "a90150589e493d5b7e87297056b6e124d8af1b91fa2eb92bab61a839839e287b",
 
             "iso_urls": [
                 "iso/alpine-virt-3.16.3-x86_64.iso",
@@ -43,8 +47,6 @@
                 "idris-playground<enter><wait>",
                 "idris-playground<enter><wait5>",
 
-                "<enter><wait5>",
-                "<enter><wait5>",
                 "<enter><wait5>",
 
                 "y<enter><wait5>",
